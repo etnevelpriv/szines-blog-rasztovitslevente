@@ -6,10 +6,10 @@ const init = function () {
     new Bejegyzes('TesztCím', 'Teszt adatok random tartalom blablabla', '#2b00ff'),
     new Bejegyzes('Másik cím teszt', 'Ez a második tesztadat tartalma.', '#ff0000'),
   ];
-  megjelenites(arr);
+  megjelenit(arr);
 };
 
-const megjelenites = function (arr: Bejegyzes[]) {
+const megjelenit = function (arr: Bejegyzes[]) {
   // console.log(arr);
   const container = document.getElementById('bejegyzesekContainer') as HTMLElement;
   arr.forEach((bejegyzes: Bejegyzes) => {
