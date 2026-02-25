@@ -2,8 +2,8 @@ import './style.css';
 import { Bejegyzes } from './Bejegyzes.ts';
 
 const arr: Bejegyzes[] = [
-  new Bejegyzes('TesztCím', 'Teszt adatok random tartalom blablabla', '#2b00ff'),
-  new Bejegyzes('Másik cím teszt', 'Ez a második tesztadat tartalma.', '#ff0000'),
+  new Bejegyzes('TesztCím', ['tesztadaaaat', 'mostmar egy tombben'], '#2b00ff'),
+  new Bejegyzes('Másik cím teszt', ['elso bekezdes', "masodik bekezdes", 'harmadik bekezdes'], '#ff0000'),
 ];
 
 const init = function () {
@@ -22,15 +22,18 @@ const megjelenit = function () {
   arr.forEach((bejegyzes: Bejegyzes) => {
     const articleElement = document.createElement('article') as HTMLElement;
     const titleElement = document.createElement('h2') as HTMLElement;
-    const contentElement = document.createElement('p') as HTMLElement;
 
     articleElement.style.color = bejegyzes.color;
     titleElement.textContent = bejegyzes.title;
-    contentElement.textContent = bejegyzes.content;
 
     container.appendChild(articleElement);
     articleElement.appendChild(titleElement);
-    articleElement.appendChild(contentElement);
+
+    bejegyzes.contents.forEach(content => {
+      const contentElement = document.createElement('p') as HTMLElement;
+      contentElement.textContent = `${content}\n\n`;
+      articleElement.appendChild(contentElement);
+    });
   });
 };
 
@@ -41,10 +44,11 @@ const ujBejegyzes = function (e: any) {
   const colorElement = document.getElementById('colorInput') as HTMLInputElement;
 
   const title = titleElement.value;
-  const content = contentElement.value;
+  const content = contentElement.value.split('\n\n');
   const color = colorElement.value;
 
-  console.log(color)
+  // console.log(color)
+  console.log(content);
 
   arr.push(new Bejegyzes(title, content, color));
   megjelenit();
