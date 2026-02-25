@@ -13,6 +13,12 @@ const init = function () {
 const megjelenit = function () {
   // console.log(arr);
   const container = document.getElementById('bejegyzesekContainer') as HTMLElement;
+  let child = container.lastElementChild;
+  while (child) {
+    container.removeChild(child);
+    child = container.lastElementChild;
+  };
+
   arr.forEach((bejegyzes: Bejegyzes) => {
     const articleElement = document.createElement('article') as HTMLElement;
     const titleElement = document.createElement('h2') as HTMLElement;
@@ -42,7 +48,7 @@ const ujBejegyzes = function (e: any) {
 
   arr.push(new Bejegyzes(title, content, color));
   megjelenit();
-  
+
   const form = document.getElementById('blogLetrehozasForm') as HTMLFormElement;
   form.reset();
 };
